@@ -21,3 +21,31 @@ export const sendMessage = catchAsyncErrors(async (req, res, next) => {
         data: newMessage
     });
 }); 
+
+
+
+export const getAllMessages = catchAsyncErrors(async (req, res, next) => {
+    const messages = await Message.find();
+
+    res.status(200).json({
+        success: true,
+        messages,
+    });
+});
+
+export const deleteMessage = catchAsyncErrors(async (req, res, next) => {
+    const messageId = req.params.id;
+
+    const message = await Message.findById(messageId);
+
+    if (!message) {
+        return next(new ErrorHandler("Message not found", 404));
+    }
+
+    await message.remove();
+
+    res.status(200).json({
+        success: true,
+        message: "Message deleted successfully",
+    });
+}); 
