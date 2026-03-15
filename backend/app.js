@@ -30,6 +30,6 @@ dbConnection();
  app.use("/api/v1/message", messageRouter);
   app.use("/api/v1/user", userRouter);
 
- // error handler must be last
+ // error handler must be last must be last one 
  app.use(errorMiddleware);
 export default app; 
