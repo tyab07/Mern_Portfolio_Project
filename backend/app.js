@@ -6,6 +6,7 @@ import fileUpload from "express-fileupload";
 import dbConnection from './database/dbConnection.js';
 import { errorMiddleware } from './middlewares/error.js';   
 import messageRouter from "./Routes/messageRoute.js";
+import userRouter from "./Routes/userRoute.js";
 
 dotenv.config({ path: "./config/config.env" });
 
@@ -27,7 +28,8 @@ app.use(fileUpload({
 dbConnection();
 
  app.use("/api/v1/message", messageRouter);
+  app.use("/api/v1/user", userRouter);
 
  // error handler must be last
  app.use(errorMiddleware);
-export default app;
+export default app; 
